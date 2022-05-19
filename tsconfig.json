@@ -1,0 +1,43 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    /* Basic */
+    "target": "ESNext",
+    "module": "ESNext",
+    "allowJs": false,
+    "checkJs": false,
+    "resolveJsonModule": true,
+    "newLine": "lf",
+    "charset": "utf8",
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    /* Module Resolution Options */
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "paths": {},
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "node",
+      "jest"
+    ],
+    /* Source Map Options */
+    "inlineSourceMap": true,
+    "inlineSources": true
+  },
+  "include": [
+    "scripts",
+    "src",
+    ".eslintrc.cjs",
+    "jest.config.cjs",
+    "commitlint.config.js",
+  ]
+}

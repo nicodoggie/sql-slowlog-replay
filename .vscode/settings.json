@@ -1,0 +1,29 @@
+{
+  "editor.codeActionsOnSave": [
+    "source.fixAll.eslint"
+  ],
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/.git": false
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "eslint.alwaysShowStatus": true,
+  "eslint.options": {
+    "extensions": [
+      "html",
+      "css",
+      "scss",
+      "ts",
+      "js",
+      "json",
+      "vue"
+    ]
+  },
+  "eslint.run": "onType",
+  "prettier.enable": false,
+}
