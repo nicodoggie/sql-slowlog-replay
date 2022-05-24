@@ -2,32 +2,33 @@ import { createReadStream } from "fs";
 import * as ndjson from 'ndjson';
 import { pipeline } from 'stream/promises';
 import MySQLParser, { MySQLQueryType } from "ts-mysql-parser";
+import { MySQLQuery, ParseResult } from "./types";
 
-function filter(sql: string): string|null {
+function filter(sql: string): MySQLQuery|null {
   const parser = new MySQLParser({
     version: '5.7'
   });
   try{
-    const result = parser.parse(sql);
-    const type = parser.getQueryType(result);
+    const ast = parser.parse(sql);
+    const type = parser.getQueryType(ast);
     
-    // console.log('result :>> ', result)
     if([
       MySQLQueryType.QtSelect,
       MySQLQueryType.QtInsert,
       MySQLQueryType.QtUpdate,
       MySQLQueryType.QtDelete
     ].includes(type)) {
-      
-      return sql;
+      return new MySQLQuery({ sql, ast, type});
     }
+
     return null;
   } catch (e) {
     return null;
   }  
 }
 
-async function* parse(filename: string) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function* parse(filename: string): ParseResult<MySQLQuery> {
   try {
     const fileStream = createReadStream(filename);
     const jsonParse = ndjson.parse();
@@ -38,7 +39,6 @@ async function* parse(filename: string) {
       if(allowed) yield allowed;
     }
     
-
   } catch (e) {
     console.error(e);
   }

@@ -11,7 +11,7 @@ module.exports = {
   rules: {
     semi: ["error", "always"],
     "newline-per-chained-call": ["error", { ignoreChainWithDepth: 1 }],
-    "comma-dangle": ["error", { arrays: "only-multiline" }],
+    "comma-dangle": ["error", { arrays: "only-multiline", object: 'only-multiline' }],
     "indent": ["error", 2, { "MemberExpression": 1 }]
   }
 };
